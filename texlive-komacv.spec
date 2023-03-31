@@ -1,6 +1,6 @@
 Name:		texlive-komacv
 Version:	57721
-Release:	1
+Release:	2
 Summary:	Typesetting a beautiful CV with various style options
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/komacv
