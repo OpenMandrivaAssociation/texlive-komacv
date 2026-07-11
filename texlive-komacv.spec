@@ -1,40 +1,22 @@
-Name:		texlive-komacv
-Version:	57721
-Release:	2
+%global tl_name komacv
+%global tl_revision 57721
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.1.2
+Release:	%{tl_revision}.1
 Summary:	Typesetting a beautiful CV with various style options
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/komacv
 License:	lppl1.3
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/komacv.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/komacv.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/komacv.source.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/komacv.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/komacv.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/komacv.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The class simplifies the creation of beautiful CV. The user may
-choose between different styles, and may adjust settings to
-tune the output.
+The class simplifies the creation of beautiful CV. The user may choose
+between different styles, and may adjust settings to tune the output.
 
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%doc %{_texmfdistdir}/source/latex/komacv
-%{_texmfdistdir}/tex/latex/komacv
-%doc %{_texmfdistdir}/doc/latex/komacv
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
